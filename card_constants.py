@@ -16,10 +16,10 @@ prime_dict = {c : p for (c, p) in zip(_cards, _primes)}
 # Diamonds = 0b0100 0000 0000 0000
 # Hearts = 0b0010 0000 0000 0000
 # Spades = 0b0001 0000 0000 0000
-suits_dict = {'C' : 32768,
-              'D' : 16384,
-              'H' : 8192,
-              'S' : 4096}
+suits_dict = {'c' : 32768,
+              'd' : 16384,
+              'h' : 8192,
+              's' : 4096}
 
 # This lookup is for the int representation of ranks
 # These are bitshifted to the left by 8 bits
