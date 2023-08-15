@@ -1,5 +1,6 @@
 from typing import List, Optional
 from card import Card
+from evaluator import evaluate_hand
 import deck
 
 class Hand5:
@@ -11,6 +12,7 @@ class Hand5:
                 self._build_hand()
             else:
                 self.cards = cards
+        self.hand_value =  evaluate_hand(self.cards)
 
     def _build_hand(self) -> None:
         d = deck.Deck()

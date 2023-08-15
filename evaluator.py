@@ -2,7 +2,12 @@ from typing import List
 from numpy import prod
 import functools
 from card import Card
-import hand
+import pickle
+
+flush_dict = pickle.load(open("flush_dict.pkl", "rb"))
+unique5_dict = pickle.load(open("unique5_dict.pkl", "rb"))
+matched_hand_dict = pickle.load(open("matched_hand_dict.pkl", "rb"))
+
 
 def _is_flush(cards: List[Card]) -> bool:
     flush = functools.reduce(lambda x, y: x & y, [c.get_int_rep() for c in cards], 61440)
@@ -31,11 +36,11 @@ def evaluate_hand(cards: List[Card]) -> int:
     
     if _is_flush(cards):
         print("straight flush or flush")
-        return _unique5(cards)
+        return flush_dict[_unique5(cards)]
     else:
         if _is_unique5(cards):
-            print("stright or high card")
-            return _unique5(cards)
+            print("straight or high card")
+            return unique5_dict[_unique5(cards)]
         else:
             print("pair, two pair, three of a kind, or full house")
-            return _matched_hand(cards)
+            return matched_hand_dict[_matched_hand(cards)]
