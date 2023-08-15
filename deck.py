@@ -1,4 +1,5 @@
 import card
+import random
 
 class Deck:
     def __init__(self) -> None:
@@ -12,3 +13,10 @@ class Deck:
         for suit in suits:
             for face in faces:
                 self.cards.append(card.Card(face, suit))
+
+    def shuffle(self, seed=None) -> None:
+        # very basic shuffle
+
+        if seed:
+            random.seed(seed)
+        random.shuffle(self.cards)
