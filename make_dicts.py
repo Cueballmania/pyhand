@@ -1,3 +1,5 @@
+# This file manipulates the equivalence.tsv file which is from http://suffe.cool/poker/7462.html
+# Thanks to Catcus Kev for publishing it!
 from typing import List, Callable
 from card import Card
 import evaluator
