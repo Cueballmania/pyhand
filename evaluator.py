@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
     # {'Straight Flush': 40, '4 of a Kind': 624, 'Full House': 3744, 'Flush': 5108, 'Straight': 10200, '3 of a Kind': 54912, '2 Pair': 123552, '1 Pair': 1098240, 'High Card': 1302540}
     d = deck.Deck()
-    five_card_strength = {}
+    five_card_strength = {} # caching the hand value for use in 7-card validation
     enumerated5 = {"Straight Flush": 0, 
                    "4 of a Kind": 0, 
                    "Full House": 0, 
