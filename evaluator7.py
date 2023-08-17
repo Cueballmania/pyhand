@@ -2,11 +2,10 @@
 # Procedure:
 # 1. Count the number of each suit in the 7-card hand
 # 2a. If the number of any suit is fewer than 5, then the hand does a prime-factorization lookup
-# 2b. If the number of any suit is 5 or 6, the only possible best hand is a flush or straight flush
+# 2b. If the number of any suit is 5 or more, the only possible best hand is a flush or straight flush
 # 2b1. If the number of that suit is 5, use the 5 card flush lookup
-# 2b2. If the number of that suit is 6, take the greatest of the 5 - 5 card flush lookups
-# 2c. If there is only one suit (7 cards in that suit), then the best hand is a flush or straight flush
-#     use the computed 7-card flush lookup
+# 2b2. If the number in that suit is 6 or 7 cards use the computed 6,7-card flush combined lookup
+
 import collections
 import itertools
 from numpy import prod
@@ -41,16 +40,12 @@ def prime_factorization_lookup(cards: List(Card)) -> int:
     return prod(list(map(lambda x: x.get_int_rep() & 255, cards)))
 
 # Given five cards of a suit, look up using the 5-card flush table
-def flush_5_lookup(cards: List(Card)) -> int:
+def flush5_lookup(cards: List(Card)) -> int:
     return flush5_dict[_unique(cards)]
 
-# Given six cards of a suit, look up each of the 5-card combinations using the 5-card flush table
-def flush_6_lookup(cards: List(Card)) -> int:
-    return min(flush_5_lookup(five_cards) for five_cards in itertools.combinations(cards, 5))
-
-# Use the 7-card flush table
-def flush_7_lookup(cards: List(Card)) -> int:
-    return flush7_dict[_unique(cards)]
+# Use the 6,7-card flush table
+def flush67_lookup(cards: List(Card)) -> int:
+    return flush67_dict[_unique(cards)]
 
 # Evaluate a 7-card hand
 def evalutate7_hand(cards: List(Card)) -> int:
@@ -59,9 +54,7 @@ def evalutate7_hand(cards: List(Card)) -> int:
         return prime_factorization_lookup(cards)
     elif num == 5:
         suited_cards = get_suited_cards(cards, high_suit)
-        return flush_5_lookup(suited_cards)
-    elif num == 6:
-        suited_cards = get_suited_cards(cards, high_suit)
-        return flush_6_lookup(suited_cards)
+        return flush5_lookup(suited_cards)
     else:
-        return flush_7_lookup(cards)
+        suited_cards = get_suited_cards(cards, high_suit)
+        return flush67_lookup(suited_cards)
