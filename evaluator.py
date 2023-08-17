@@ -22,7 +22,7 @@ def _is_unique5(cards: List[Card]) -> bool:
     else:
         return False
 
-def _unique5(cards: List[Card]) -> int:
+def _unique(cards: List[Card]) -> int:
     return reduce(lambda x, y: x | y, [c.get_int_rep() for c in cards], 0) >> 16
 
 def _matched_hand(cards: List[Card]) -> int:
@@ -42,10 +42,10 @@ def evaluate_hand(cards: List[Card]) -> int:
         return 0
     
     if _is_flush(cards):
-        return flush_dict[_unique5(cards)]
+        return flush_dict[_unique(cards)]
     else:
         if _is_unique5(cards):
-            return unique5_dict[_unique5(cards)]
+            return unique5_dict[_unique(cards)]
         else:
             return matched_hand_dict[_matched_hand(cards)]
 

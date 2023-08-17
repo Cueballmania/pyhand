@@ -10,8 +10,6 @@ from card import Card
 from typing import List
 import evaluator as e
 
-
-
 def pickle_dict(filename: str, dict: dict):
     # This function will pickle the dictionary
     with open(filename, 'wb') as f:
@@ -40,9 +38,7 @@ if __name__ == "__main__":
     # finding all 6 card combos is equivalent to finding all 7 card combos
     # since 13C7 = 13C6
     flush67_dict = {}
-    suit_deck = [Card('2', 's'), Card('3', 's'), Card('4', 's'), Card('5', 's'), 
-                 Card('6', 's'), Card('7', 's'), Card('8', 's'), Card('9', 's'),
-                 Card('T', 's'), Card('J', 's'), Card('Q', 's'), Card('K', 's'), Card('A', 's')]
+    suit_deck = d.cards[0:13]
 
     for hand in itertools.combinations(suit_deck,6):
         best_hand6 = 8000 # Placeholders with the "worst" hand
@@ -66,7 +62,7 @@ if __name__ == "__main__":
     for hand in itertools.combinations(d.cards,7):
         if _n_suit(hand) > 4:
             pass
-        hand_key = e._unique(hand)
+        hand_key = e._matched_hand(hand)
         if hand_key not in prime_factor_dict:
             best_hand = 8000
             for fives_cards in itertools.combinations(hand,5):
@@ -75,5 +71,5 @@ if __name__ == "__main__":
         else:
             pass
     
-    print(len(prime_factor_dict))
+    # print(len(prime_factor_dict)) ## 49205
     pickle_dict('prime_factor_dict.pkl', prime_factor_dict)
