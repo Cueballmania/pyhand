@@ -3,6 +3,9 @@ from card import Card
 from evaluator import evaluate_hand
 import deck
 
+def make_handlist(in_str: str) -> List[Card]:
+    return [Card(in_str[c], in_str[c+1]) for c in range(0, len(in_str), 2)]
+
 class Hand5:
     def __init__(self, cards: Optional[List[Card]]=None) -> None:
         if cards is None:

@@ -62,14 +62,15 @@ if __name__ == "__main__":
     for hand in itertools.combinations(d.cards,7):
         if _n_suit(hand) > 4:
             pass
-        hand_key = e._matched_hand(hand)
-        if hand_key not in prime_factor_dict:
-            best_hand = 8000
-            for fives_cards in itertools.combinations(hand,5):
-                best_hand = min(best_hand, five_card_strength[fives_cards])
-            prime_factor_dict[hand_key] = best_hand
         else:
-            pass
+            hand_key = e._matched_hand(hand)
+            if hand_key not in prime_factor_dict:
+                best_hand = 8000
+                for fives_cards in itertools.combinations(hand,5):
+                    best_hand = min(best_hand, five_card_strength[fives_cards])
+                prime_factor_dict[hand_key] = best_hand
+            else:
+                pass
     
     # print(len(prime_factor_dict)) ## 49205
     pickle_dict('prime_factor_dict.pkl', prime_factor_dict)
