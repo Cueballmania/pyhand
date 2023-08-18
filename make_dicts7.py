@@ -91,3 +91,6 @@ if __name__ == "__main__":
 # two_pair = (list(pair)*2 + list(triple) for pair in combinations(value_deck,2) for triple in combinations([card for card in value_deck if card not in pair],3))
 # one_pair = ([card]*2 + list(quint) for card in value_deck for quint in combinations([card2 for card2 in value_deck if card2 != card],5))
 # no_pair = (list(sept) for sept in combinations(value_deck,7))
+# seven_perms = chain(quad_trips, quad_pair, quad_nopair, trips_trips,
+#                     trips_2pair, trips_pair, trips_nopair, three_pair,
+#                     two_pair, one_pair, no_pair)
