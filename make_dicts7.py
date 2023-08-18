@@ -74,3 +74,20 @@ if __name__ == "__main__":
     
     # print(len(prime_factor_dict)) ## 49205
     pickle_dict('prime_factor_dict.pkl', prime_factor_dict)
+
+# 7 card permutations. Need to format and test.
+# from itertools import chain, combinations, permutations
+# value_deck = suit_deck
+# quad_trips = ([pairs[0]]*4+[pairs[1]]*3 for pairs in permutations(value_deck,2))
+# quad_pair = ([triple[0]]*4+[triple[1]]*2 + [triple[2]] for triple in permutations(value_deck,3))
+# quad_nopair = ([card]*4+list(triple) for card in value_deck for triple in combinations([card2 for card2 in value_deck if card2 != card],3))
+
+# trips_trips = ([pair[0]]*3+[pair[1]]*3+[card] for pair in combinations(value_deck,2) for card in value_deck if card not in pair)
+# trips_2pair = ([card]*3+list(pair)*2 for card in value_deck for pair in combinations([card2 for card2 in value_deck if card2 != card],2))
+# trips_pair = ([pair[0]]*3+[pair[1]]*2+list(pair2) for pair in permutations(value_deck,2) for pair2 in combinations([card for card in value_deck if card not in pair],2))
+# trips_nopair = ([card]*3+list(quad) for card in value_deck for quad in combinations([card2 for card2 in value_deck if card2 != card],4))
+
+# three_pair = (list(triple)*2 + [card] for triple in combinations(value_deck,3) for card in value_deck if card not in triple)
+# two_pair = (list(pair)*2 + list(triple) for pair in combinations(value_deck,2) for triple in combinations([card for card in value_deck if card not in pair],3))
+# one_pair = ([card]*2 + list(quint) for card in value_deck for quint in combinations([card2 for card2 in value_deck if card2 != card],5))
+# no_pair = (list(sept) for sept in combinations(value_deck,7))
