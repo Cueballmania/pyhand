@@ -2,13 +2,13 @@
 # first run the 5 card evaluator to create a dictionary of all 5 card hands
 # then iterate all of the 7 card hands to map them to the best 5 card hand they can make
 # each of these are stored in the correct place
-import deck
+import src.pyhand.deck as deck
 import itertools
 import collections
 import pickle
-from card import Card
+from src.pyhand.card import Card
 from typing import List
-import evaluator as e
+import src.pyhand.evaluator as e
 
 def pickle_dict(filename: str, dict: dict):
     # This function will pickle the dictionary

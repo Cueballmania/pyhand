@@ -1,4 +1,5 @@
-import card
+from src.pyhand.card import Card
+from typing import List
 import random
 
 class Deck:
@@ -12,7 +13,7 @@ class Deck:
                  '8', '9', 'T', 'J', 'Q', 'K', 'A']
         for suit in suits:
             for face in faces:
-                self.cards.append(card.Card(face, suit))
+                self.cards.append(Card(face, suit))
 
     def shuffle(self, seed=None) -> None:
         # very basic shuffle

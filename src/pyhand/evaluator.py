@@ -1,7 +1,7 @@
 from typing import List
 from numpy import prod
 from functools import reduce
-from card import Card
+from src.pyhand.card import Card
 import pickle
 
 flush_dict = pickle.load(open("flush_dict.pkl", "rb"))
@@ -71,7 +71,7 @@ def hand_strength(hand_eval: int) -> str:
         return "High Card"
 
 if __name__ == "__main__":
-    import deck
+    import src.pyhand.deck as deck
     import itertools
 
     # {'Straight Flush': 40, '4 of a Kind': 624, 'Full House': 3744, 'Flush': 5108, 'Straight': 10200, '3 of a Kind': 54912, '2 Pair': 123552, '1 Pair': 1098240, 'High Card': 1302540}

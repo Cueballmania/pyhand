@@ -12,7 +12,7 @@ from numpy import prod
 import pickle
 from typing import List
 from functools import reduce
-from card import Card
+from src.pyhand.card import Card
 
 flush5_dict = pickle.load(open("flush_dict.pkl", "rb"))
 flush67_dict = pickle.load(open("flush67_dict.pkl", "rb"))

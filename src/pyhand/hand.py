@@ -1,7 +1,7 @@
 from typing import List, Optional
-from card import Card
-from evaluator import evaluate_hand
-import deck
+from src.pyhand.card import Card
+from src.pyhand.evaluator import evaluate_hand
+import src.pyhand.deck as deck
 
 def make_handlist(in_str: str) -> List[Card]:
     return [Card(in_str[c], in_str[c+1]) for c in range(0, len(in_str), 2)]
