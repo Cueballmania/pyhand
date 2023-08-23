@@ -1,8 +1,11 @@
-# This file manipulates the equivalence.tsv file which is from http://suffe.cool/poker/7462.html
+# This file generates all of the pickle dictionary files needed for lookup evaluation
+# This script needs equivalence.tsv in the ../data/ directory to read in the equivalence class values
+# This file is from http://suffe.cool/poker/7462.html
 # Thanks to Catcus Kev for publishing it!
+
 from typing import List, Callable
 from card import Card
-import evaluator as evaluator
+import bit_calculator as bc
 import pickle
 
 def read_file(filename: str) -> List[List]:
@@ -40,17 +43,21 @@ def pickle_dict(filename: str, dict: dict):
         pickle.dump(dict, f, protocol=pickle.HIGHEST_PROTOCOL)
 
 if __name__ == "__main__":
-    filelines = read_file('equivalence.tsv')
+    from deck import Deck
+    
+    # 5-cards dictionaries
+    equiv_file = read_file('../../data/equivalence.tsv')
 
-    flush_lines = filter_lines_by_class(filelines, ['F', 'SF'])
-    flush_dict = make_dict(flush_lines, evaluator._unique5)
-    pickle_dict('flush_dict.pkl', flush_dict)
+    flush_lines = filter_lines_by_class(equiv_file, ['F', 'SF'])
+    flush_dict = make_dict(flush_lines, bc._unique)
+    pickle_dict('../data/flush5_dict.pkl', flush_dict)
 
-    unique5_lines = filter_lines_by_class(filelines, ['S', 'HC'])
-    unique5_dict = make_dict(unique5_lines, evaluator._unique5)
-    pickle_dict('unique5_dict.pkl', unique5_dict)
+    unique5_lines = filter_lines_by_class(equiv_file, ['S', 'HC'])
+    unique5_dict = make_dict(unique5_lines, bc._unique)
+    pickle_dict('../data/unique5_dict.pkl', unique5_dict)
 
-    pair_plus_lines = filter_lines_by_class(filelines, ['1P', '2P', '3K', 'FH', '4K'])
-    pair_plus_dict = make_dict(pair_plus_lines, evaluator._matched_hand)
-    pickle_dict('matched_hand_dict.pkl', pair_plus_dict)
+    pair_plus_lines = filter_lines_by_class(equiv_file, ['1P', '2P', '3K', 'FH', '4K'])
+    pair_plus_dict = make_dict(pair_plus_lines, bc._matched_hand)
+    pickle_dict('../data/matched5_hand_dict.pkl', pair_plus_dict)
 
+    

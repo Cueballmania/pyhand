@@ -1,5 +1,5 @@
 # This code generates a class for a card object
-import src.pyhand.card_constants as cc
+import card_constants as cc
 
 class Card:
     def __init__(self, face: str, suit: str) -> None:

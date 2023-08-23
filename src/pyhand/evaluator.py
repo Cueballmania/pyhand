@@ -1,12 +1,12 @@
 from typing import List
 from numpy import prod
 from functools import reduce
-from src.pyhand.card import Card
+from card import Card
 import pickle
 
-flush_dict = pickle.load(open("flush_dict.pkl", "rb"))
-unique5_dict = pickle.load(open("unique5_dict.pkl", "rb"))
-matched_hand_dict = pickle.load(open("matched_hand_dict.pkl", "rb"))
+flush_dict = pickle.load(open("../data/flush5_dict.pkl", "rb"))
+unique5_dict = pickle.load(open("../data/unique5_dict.pkl", "rb"))
+matched_hand_dict = pickle.load(open("../data/matched5_hand_dict.pkl", "rb"))
 
 def _is_flush(cards: List[Card]) -> bool:
     flush = reduce(lambda x, y: x & y, [c.get_int_rep() for c in cards], 61440)
